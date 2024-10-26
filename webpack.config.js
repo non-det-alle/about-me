@@ -14,10 +14,12 @@ module.exports = {
   entry: './src/index.ts',
 
   devServer: {
-    publicPath: '/about-me/'
+    publicPath: '/about-me/',
+    public: `localhost:8080`
   },
 
   output: {
+    path: path.join(process.cwd(), 'dist'),
     publicPath: '/about-me/',
   },
 
