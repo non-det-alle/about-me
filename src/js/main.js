@@ -1,5 +1,5 @@
 "use strict";
-// I wish I could have used ES6 extravaganza, but not everyone supports it :(
+
 var r = document.getElementById("rbw"),
   currentHue = 0,
   hueAddition = 5,
@@ -7,34 +7,35 @@ var r = document.getElementById("rbw"),
   clickEvent = "ontouchstart" in window ? "touchend" : "click",
   classMethods = ["remove", "add"],
   rainbowTiming = 1000 / 25,
-  stringArray = ["Add more contrast", "Remove additional contrast", "Inverted mode", "Normal mode"];
+  stringArray = ["Add more contrast", "Remove additional contrast", "Light mode", "Dark mode"];
 
 function createControls() {
   var contrastButton = document.createElement('button');
-    contrastButton.id = "contrast";
-    contrastButton.classList.add('cont-inv');
-    contrastButton.innerText = stringArray[0];
-    contrastButton.tabIndex = 1;
+  contrastButton.id = "contrast";
+  contrastButton.classList.add('cont-inv');
+  contrastButton.innerText = stringArray[0];
+  contrastButton.tabIndex = 1;
 
   var nightModeButton = document.createElement('button');
-    nightModeButton.id = "invmode";
-    nightModeButton.classList.add('cont-inv');
-    nightModeButton.innerText = stringArray[2];
-    nightModeButton.tabIndex = 2;
+  nightModeButton.id = "invmode";
+  nightModeButton.classList.add('cont-inv');
+  nightModeButton.innerText = stringArray[2];
+  nightModeButton.tabIndex = 2;
+
   document.body.appendChild(contrastButton);
   document.body.appendChild(nightModeButton);
 }
 
-function doThatFuckingColorThing() {
+function doThatColorThing() {
   var color = "hsl(" + currentHue + ", 80%, 60%)",
     nextHue = currentHue + hueAddition;
   currentHue = nextHue > 360 ? 0 : nextHue;
   r.style.color = color;
-  setTimeout(doThatFuckingColorThing, rainbowTiming);
+  setTimeout(doThatColorThing, rainbowTiming);
 }
 
 function someControl(id, textArr, className) {
-  /* You see? No fucking jQuery needed, check:
+  /* No jQuery needed, check:
    * http://www.vanilla-js.com/
    * http://jsperf.com/getelementbyid-vs-jquery-id/44
    */
@@ -44,7 +45,7 @@ function someControl(id, textArr, className) {
     toggled = false;
   acbox.addEventListener(
     clickEvent,
-    function() {
+    function () {
       var selector = Number((toggled = !toggled));
       textNode.data = textArr[selector];
       el.classList[classMethods[selector]](className);
@@ -54,11 +55,7 @@ function someControl(id, textArr, className) {
 }
 
 function addContrastControl() {
-  someControl(
-    "contrast",
-    [stringArray[0], stringArray[1]],
-    "contrast"
-  );
+  someControl("contrast", [stringArray[0], stringArray[1]], "contrast");
 }
 
 function addInvertedControl() {
@@ -66,6 +63,6 @@ function addInvertedControl() {
 }
 
 createControls();
-doThatFuckingColorThing();
+doThatColorThing();
 addContrastControl();
 addInvertedControl();
