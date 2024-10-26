@@ -13,6 +13,14 @@ module.exports = {
   mode: 'development',
   entry: './src/index.ts',
 
+  devServer: {
+    publicPath: '/about-me/'
+  },
+
+  output: {
+    publicPath: '/about-me/',
+  },
+
   plugins: [
     new OptimizeCssAssetsPlugin(),
     new CleanWebpackPlugin({
@@ -23,7 +31,7 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.css' }),
     new CopyPlugin([
-      { from: 'src/dist/', to: './'},
+      { from: 'src/dist/', to: './' },
     ]),
   ],
 
@@ -31,57 +39,58 @@ module.exports = {
     rules: [
       {
         test: /.(js)?$/,
-        loader: 'script-loader',
+        use: ['script-loader'],
         include: [],
         exclude: [/node_modules/]
       },
       {
         test: /.(ts|tsx)?$/,
-        loader: 'ts-loader',
+        use: ['ts-loader'],
         include: [],
         exclude: [/node_modules/]
       },
       {
         test: /.(css)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            publicPath: '/',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+            }
+          },
+          'extract-loader',
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: false
+            }
           }
-        },
-        'extract-loader',
-        {
-          loader: "css-loader",
-          options: {
-            sourceMap: false
-          }
-        }
         ]
       },
       {
         test: /.(less)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'main.css',
-            esModule: false,
-            publicPath: '/',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'main.css',
+              esModule: false,
+            }
+          },
+          'extract-loader',
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: false
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              sourceMap: true
+            }
           }
-        },
-        'extract-loader',
-        {
-          loader: "css-loader",
-          options: {
-            sourceMap: false
-          }
-        },
-        {
-          loader: "less-loader",
-          options: {
-            sourceMap: true
-          }
-        }]
+        ]
       },
       {
         test: /.pug$/,
@@ -90,7 +99,6 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'index.html',
-              publicPath: '/'
             }
           },
           'extract-loader',
@@ -105,14 +113,13 @@ module.exports = {
       },
       {
         test: /\.(svg|jpg|woff(2)?|ttf|eot)/,
-        use: [{
+        use: {
           loader: 'file-loader',
           options: {
             name: 'static/[hash].[ext]',
             esModule: false,
-            publicPath: '/'
           }
-        }]
+        }
       }
     ]
   },
