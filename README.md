@@ -1,26 +1,15 @@
-# The Best Motherfucking Website
-Source of [The Best Motherfucking Website](https://thebestmotherfucking.website)  
-Based on [motherfuckingwebsite](http://motherfuckingwebsite.com/) and [bettermotherfuckingwebsite](http://bettermotherfuckingwebsite.com/)
+# Personal website
 
-## Clone the repo
-`git clone https://github.com/denysvitali/thebestmotherfuckingwebsite`
+Source: <https://github.com/denysvitali/thebestmotherfuckingwebsite>
 
-## Deployment instructions
-See `partial-nginx.conf` for the configuration file  
 ## Build instructions
-In order to build this project, you'll need [Yarn](https://yarnpkg.com/).
 
+In order to build this project, you'll need [Docker](https://docker.com/).
+
+```bash
+docker run -ti --rm -p 8080:8080 -v .:/app --name website website
 ```
-yarn install
-yarn run start:dev
-```
 
-Visit http://localhost:8080 and you'll be able to improve / view the website :)
+Visit <http://localhost:8080> and you'll be able to view the website.
 
-To deploy it, use `yarn run build` and deploy the contents of the `dist/` directory.
-
-## Want something to be changed?
-[Open an issue](https://github.com/denysvitali/thebestmotherfuckingwebsite/issues) and let's discuss it. If you want to implement it yourself do it freely and make a PR.
-
-## Want to create a blog with a similar theme?
-Check out [The Best Motherfucking Blog Theme](https://github.com/denysvitali/hugo-thebestmotherfuckingblog) or try [HugoModo Best Motherfucking Website](https://github.com/hugomodo/hugomodo-best-motherfucking-website) by [thombruce](https://github.com/thombruce).
+To deploy it, attatch to the container, use `yarn run build` and deploy the contents of the `dist/` directory.
