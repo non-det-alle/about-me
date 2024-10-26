@@ -1,14 +1,20 @@
 {
-  "name": "thebestmotherfuckingwebsite",
-  "version": "1.0.0",
-  "description": "The title says it all.",
+  "name": "about-me",
+  "version": "0.1.0",
+  "description": "A brief overview of my work and projects.",
+  "author": "Alessandro Aimi",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server --host 0"
   },
-  "author": "Denys Vitali",
-  "license": "MIT",
+  "main": "src/index.ts",
+  "homepage": "http://non-det-alle.github.io/about-me",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/non-det-alle/about-me.git"
+  },
   "devDependencies": {
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "clean-webpack-plugin": "^3.0.0",
