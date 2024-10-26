@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.prod.js",
-    "start:dev": "webpack-dev-server"
+    "start": "webpack-dev-server --host 0"
   },
   "author": "Denys Vitali",
   "license": "MIT",
