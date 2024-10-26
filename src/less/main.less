@@ -14,8 +14,8 @@
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
 
-.light(){
-  html{
+.light() {
+  html {
     background-color: @bodybgColor;
   }
 }
@@ -23,34 +23,37 @@
 .contrast() {
   /* Accessibility first */
   @darkenBy: 25%;
-  body{
+
+  body {
     color: darken(@bodyTextColor, @darkenBy);
   }
 
-  blockquote{
+  blockquote {
     color: darken(@blockQuoteColor, @darkenBy);
-    &::before{
+
+    &::before {
       color: darken(@openQuoteColor, @darkenBy);
     }
   }
 
-  a{
+  a {
     color: #03F;
-    &:visited{
-        color: #7d013e;
+
+    &:visited {
+      color: #7d013e;
     }
   }
 
-  span.wr{
+  span.wr {
     color: #800;
   }
 
-  span.mfw{
+  span.mfw {
     color: darken(@motherfuckingColor, @darkenBy*.3);
   }
 }
 
-body{
+body {
   font-family: "Open Sans", Arial;
   color: @bodyTextColor;
   font-size: 16px;
@@ -63,18 +66,18 @@ body{
   hyphens: auto;
 }
 
-html.contrast{
+html.contrast {
   .contrast();
 }
 
-.make_it_dark(@lightenBy){
+.make_it_dark(@lightenBy) {
   background-color: #000;
 
-  body{
-    color: lighten( #FFF - @bodyTextColor, @lightenBy);
+  body {
+    color: lighten(#FFF - @bodyTextColor, @lightenBy);
   }
 
-  #invmode{
+  #invmode {
     color: #FFF;
     background-color: #000;
   }
@@ -84,40 +87,42 @@ html.contrast{
     background-color: #000;
   }
 
-  blockquote{
+  blockquote {
     color: lighten(#FFF - @blockQuoteColor, @lightenBy);
-    &::before{
+
+    &::before {
       color: lighten(#FFF - @openQuoteColor, @lightenBy);
     }
   }
 
-  a{
+  a {
     color: lighten(@linkColor, @lightenBy);
-    &:visited{
+
+    &:visited {
       color: lighten(@linkVisitedColor, @lightenBy);
     }
   }
 
-  span.wr{
+  span.wr {
     color: lighten(@wrongColor, @lightenBy*.5);
   }
 
-  span.mfw{
+  span.mfw {
     color: lighten(@motherfuckingColor, @lightenBy);
   }
 }
 
-.dark(){
+.dark() {
   /* Don't let the motherfucking sun disturb you */
   .make_it_dark(12%)
 }
 
-.dark_contrast(){
+.dark_contrast() {
   .make_it_dark(30%)
 }
 
-@media screen and (prefers-color-scheme: light){
-  html.inverted{
+@media screen and (prefers-color-scheme: light) {
+  html.inverted {
     .dark()
   }
 
@@ -126,12 +131,12 @@ html.contrast{
   }
 }
 
-@media (prefers-color-scheme: dark){
-  html:not(.inverted){
+@media (prefers-color-scheme: dark) {
+  html:not(.inverted) {
     .dark();
   }
 
-  html:not(.inverted).contrast{
+  html:not(.inverted).contrast {
     .dark_contrast();
   }
 
@@ -141,15 +146,15 @@ html.contrast{
 }
 
 
-a{
+a {
   color: @linkColor;
 
-  &:visited{
+  &:visited {
     color: @linkVisitedColor;
   }
 }
 
-.noselect{
+.noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -159,29 +164,29 @@ a{
 }
 
 
-span.citneed{
+span.citneed {
   vertical-align: top;
   font-size: 0.7em;
   padding-left: 0.3em;
 }
 
-small{
+small {
   font-size: 0.4em;
 }
 
-p.st{
+p.st {
   margin-top: -1em;
 }
 
-div.fancyPositioning{
+div.fancyPositioning {
 
-  div.picture-left{
+  div.picture-left {
     float: left;
     width: 40%;
     overflow: hidden;
     margin-right: 1em;
 
-    img{
+    img {
       width: 100%;
     }
 
@@ -194,54 +199,56 @@ div.fancyPositioning{
     }
   }
 
-  div.tleft{
+  div.tleft {
     float: left;
     width: 55%;
-    p:first-child{
+
+    p:first-child {
       margin-top: 0;
     }
   }
-  &::after{
+
+  &::after {
     display: block;
     content: "";
     clear: both;
   }
 }
 
-ul{
-  li{
-    img{
+ul {
+  li {
+    img {
       height: 1em;
     }
   }
 }
 
-blockquote{
+blockquote {
   color: @blockQuoteColor;
   margin-left: 0;
   margin-top: 2em;
   margin-bottom: 2em;
 
-  span{
+  span {
     float: left;
     margin-left: 1rem;
     padding-top: 1rem;
   }
 
-  author{
+  author {
     display: block;
     clear: both;
     font-size: 0.6em;
     margin-left: 2.4rem;
     font-style: oblique;
 
-    &:before{
+    &:before {
       content: "- ";
       margin-right: 1em;
     }
   }
 
-  &::before{
+  &::before {
     font-family: "Times New Roman", Times, Arial;
     color: @openQuoteColor;
     content: open-quote;
@@ -253,7 +260,7 @@ blockquote{
     width: 1.2rem;
   }
 
-  &::after{
+  &::after {
     content: "";
     display: block;
     clear: both;
@@ -262,31 +269,33 @@ blockquote{
 
 @media screen and (max-width: 500px) {
 
-  body{
+  body {
     text-align: left;
   }
 
-  div.fancyPositioning{
-    div.picture-left{
+  div.fancyPositioning {
+    div.picture-left {
       float: none;
       width: inherit;
     }
 
-    div.tleft{
+    div.tleft {
       float: none;
       width: inherit;
     }
   }
 
-  blockquote{
-    span{
+  blockquote {
+    span {
       width: 80%;
     }
-    author{
+
+    author {
       padding-top: 1em;
       width: 80%;
       margin-left: 15%;
-      &::before{
+
+      &::before {
         content: "";
         margin-right: inherit;
       }
@@ -297,15 +306,15 @@ blockquote{
 
 // ===== TBMFW specific styles ======
 
-span.visited{
+span.visited {
   color: @linkVisitedColor;
 }
 
-span.visited-maroon{
-  color:  #85144b;
+span.visited-maroon {
+  color: #85144b;
 }
 
-span.wr{
+span.wr {
   color: @wrongColor;
   font-weight: 600;
   text-decoration: underline;
@@ -322,45 +331,45 @@ button.cont-inv {
   padding: 2px 5px 2px 5px;
 }
 
-#contrast{
+#contrast {
   color: #000;
   top: 10px;
   .noselect
 }
 
 
-#invmode{
+#invmode {
   color: #FFF;
   background-color: #000;
   position: fixed;
-  top: 34px;  
+  top: 34px;
   text-decoration: underline;
   .noselect
 }
 
 @media screen and (max-width:1080px) {
-  
+
   #contrast {
     position: absolute;
   }
-  
+
   #invmode {
     position: absolute;
   }
 }
 
-span.sb{
+span.sb {
   cursor: not-allowed;
   color: @shittyBlue;
 }
 
-span.sv{
+span.sv {
   cursor: not-allowed;
   color: @shittyViolet;
 }
 
-span.foufoufou{
-  &::before{
+span.foufoufou {
+  &::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -369,12 +378,13 @@ span.foufoufou{
     margin-right: 0.2em;
     background-color: #444;
   }
+
   color: #444;
   font-weight: bold;
 }
 
 span.foufivfoufivfoufiv {
-  &::before{
+  &::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -383,20 +393,21 @@ span.foufivfoufivfoufiv {
     margin-right: 0.2em;
     background-color: #454545;
   }
+
   color: #454545;
   font-weight: bold;
 }
 
-span.mfw{
+span.mfw {
   color: @motherfuckingColor;
 }
 
-a.kopimi{
+a.kopimi {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  
-  img.kopimi{
+
+  img.kopimi {
     display: block;
     height: 2em;
     margin-left: auto;
@@ -404,7 +415,7 @@ a.kopimi{
   }
 }
 
-p.fakepre{
+p.fakepre {
   font-family: monospace;
   font-size: 0.9em;
 }
