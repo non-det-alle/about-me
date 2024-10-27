@@ -1,0 +1,10 @@
+services:
+  dev-server:
+    image: node:20
+    working_dir: /app
+    command: /bin/sh -c "yarn install && yarn start:dev"
+    tty: true
+    volumes: 
+      - .:/app
+    ports:
+      - 8080:8080

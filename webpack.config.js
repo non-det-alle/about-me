@@ -15,7 +15,8 @@ module.exports = {
 
   devServer: {
     publicPath: '/about-me/',
-    public: `localhost:8080`
+    public: 'localhost:8080',
+    host: '0.0.0.0',
   },
 
   output: {
