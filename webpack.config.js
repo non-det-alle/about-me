@@ -4,7 +4,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 
@@ -13,12 +12,10 @@ module.exports = {
   entry: './src/index.ts',
 
   output: {
-    path: path.join(process.cwd(), 'dist'),
     publicPath: '/about-me/',
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.css' }),
     new CopyPlugin({ patterns: [{ from: 'src/dist/', to: './' }] }),
