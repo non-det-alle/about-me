@@ -25,16 +25,10 @@ module.exports = {
 
   plugins: [
     new OptimizeCssAssetsPlugin(),
-    new CleanWebpackPlugin({
-      output: {
-        path: path.resolve(process.cwd(), 'dist'),
-      }
-    }),
+    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.css' }),
-    new CopyPlugin([
-      { from: 'src/dist/', to: './' },
-    ]),
+    new CopyPlugin([{ from: 'src/dist/', to: './' }]),
   ],
 
   module: {
