@@ -2,22 +2,15 @@ const webpack = require('webpack');
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-
 
 
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
-
-  devServer: {
-    publicPath: '/about-me/',
-    public: 'localhost:8080',
-    host: '0.0.0.0',
-  },
 
   output: {
     path: path.join(process.cwd(), 'dist'),
@@ -25,11 +18,10 @@ module.exports = {
   },
 
   plugins: [
-    new OptimizeCssAssetsPlugin(),
     new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.css' }),
-    new CopyPlugin([{ from: 'src/dist/', to: './' }]),
+    new CopyPlugin({ patterns: [{ from: 'src/dist/', to: './' }] }),
   ],
 
   module: {
@@ -105,7 +97,12 @@ module.exports = {
               attrs: ["img:src", "link:href"]
             }
           },
-          'pug-html-loader'
+          {
+            loader: '@webdiscus/pug-loader',
+            options: {
+              mode: 'html'
+            }
+          }
         ]
       },
       {
@@ -126,6 +123,10 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin(),
+    ],
+    minimize: true,
   }
 }
